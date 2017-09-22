@@ -1,0 +1,24 @@
+spring:
+  profiles:
+    active: development
+server:
+  port: 8761
+eureka:
+  instance:
+    status-page-url-path: ${management.contextPath}/info
+    health-check-url-path: ${management.contextPath}/health
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+
+---
+spring:
+  profiles: production
+
+---
+spring:
+  profiles: test
+
+---
+spring:
+  profiles: development
