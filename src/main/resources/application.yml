@@ -1,15 +1,6 @@
 spring:
   profiles:
-    active: development
-server:
-  port: 8761
-eureka:
-  instance:
-    status-page-url-path: ${management.contextPath}/info
-    health-check-url-path: ${management.contextPath}/health
-  client:
-    register-with-eureka: false
-    fetch-registry: false
+    active: test
 
 ---
 spring:
@@ -18,7 +9,26 @@ spring:
 ---
 spring:
   profiles: test
-
+security:
+  user:
+    name: admin
+    password: password
+server:
+  port: ${PORT:8761}
+eureka:
+  instance:
+    hostname: localhost
+    status-page-url-path: ${management.contextPath}/info
+    health-check-url-path: ${management.contextPath}/health
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
 ---
 spring:
   profiles: development
+security:
+  user:
+    name: admin
+    password: password
